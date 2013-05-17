@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="../../css/p4p-2.0.css">
+<textarea name="" id="tmpl" cols="30" rows="10" style="display: none;">
+    <div id="${box}" class="J_sim_box" data-src="${imgsrc}">
+        <div class="J_sidertab_box" style="top:${sidebarY}px;left:${sidebarX}px;display:block;">
+            <div class="pin_sidertab" style="overflow:hidden;">
+                <ul class="sider_ul">{{each dataList}}
+                    <li class="tabli" data-key="${categroryName}" categroryId="${categroryId}"><span
+                            class="t_bg"></span><a target="_blank" title="${name}" itemidvalue="${itemIdValue}"
+                                                   class="alink J-sidertab-link" href="${url}"
+                                                   hidefocus="true">${name}</a><span class="b_bg"></span></li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        {{each dataList}}
+        <div class="J-marker-box" style="left:${markerX}px; top:${markerY}px;position:absolute;"
+             data-key="${categroryName}" categroryId="${categroryId}">
+            <div class="pin_tts-marker"><a target="_blank" href="${url}" itemidvalue="${itemIdValue}"></a></div>
+            <div class="pin_similar-box" style="left:${wrapX}px;">
+                <div class="pin_tip-wrap">
+                    <div class="tip_up"></div>
+                    <a class="close" href="javascript:;" title="关闭"></a>
+
+                    <h3 class="h3">${name}</h3>
+                    <ul class="pd">
+                        <li>
+                            <div class="img"><a href="${url}" title="${productTitle}" target="_blank"><img height="120"
+                                                                                                           alt="${productTitle}"
+                                                                                                           itemidvalue="${itemIdValue}"
+                                                                                                           title="${productTitle}"
+                                                                                                           src="${productPicUrl}"></a>
+                            </div>
+                            <div class="price"><span>${price}</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</textarea>
+<script type="text/javascript" src="../../js/lib/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.tmpl.min.js"></script>
+<script type="text/javascript">
+    var data = {"box":"sim_box_0", "sidebarY":20, "sidebarX":500, "imgsrc":"http://img1.cache.netease.com/photo/0003/2012-11-23/8GVTHMH200AJ0003.jpg", "dataList":[
+        {"markerX":100, "markerY":100, "markerWidth":112, "marginHeight":112, "categroryId":"1175", "categroryName":"和服", "wrapX":"34", "wrapY":0, "url":"http://www.taotaosou.com/itemlike.html?tbId=19247532669&spm=2014.12305607.13.1&outer_code=ttkmediaItem", "name":"相似和服", "tabName":"相似", "itemIdValue":"2152226:19247532669", "price":"1113", "keywordList":[
+            {"id":26, "frontKeyword":"毛衣", "backKeyword":"毛衣 女", "createTime":"Sep 12, 2012 9:06:34 AM", "updateTime":"Feb 26, 2013 2:43:59 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":27, "frontKeyword":"薄外套", "backKeyword":"春装外套 女", "createTime":"Sep 12, 2012 9:06:45 AM", "updateTime":"Feb 26, 2013 2:44:23 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":47, "frontKeyword":"卫衣", "backKeyword":"卫衣 女", "createTime":"Dec 7, 2012 10:27:31 AM", "updateTime":"Feb 26, 2013 3:12:26 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":49, "frontKeyword":"男春装", "backKeyword":"男士春装", "createTime":"Dec 7, 2012 10:27:56 AM", "updateTime":"Feb 26, 2013 3:19:02 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":48, "frontKeyword":"睡衣", "backKeyword":"睡衣", "createTime":"Dec 7, 2012 10:27:42 AM", "updateTime":"Feb 26, 2013 3:14:24 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":51, "frontKeyword":"男鞋", "backKeyword":"男休闲鞋", "createTime":"Dec 7, 2012 10:29:31 AM", "updateTime":"Feb 26, 2013 3:32:15 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":34, "frontKeyword":"半身裙", "backKeyword":"半身裙", "createTime":"Sep 12, 2012 9:07:57 AM", "updateTime":"Feb 26, 2013 2:46:27 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":53, "frontKeyword":"休闲鞋", "backKeyword":"休闲鞋 女", "createTime":"Dec 7, 2012 10:30:25 AM", "updateTime":"Feb 26, 2013 3:33:08 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":38, "frontKeyword":"女包", "backKeyword":"女包", "createTime":"Sep 12, 2012 9:08:42 AM", "updateTime":"Feb 26, 2013 2:51:01 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"},
+            {"id":39, "frontKeyword":"菱格包", "backKeyword":"菱格包", "createTime":"Sep 12, 2012 9:08:51 AM", "updateTime":"Feb 26, 2013 2:51:44 PM", "link":"http://www.taotaosou.com/getProducts?src=1&spm=2014.12305607.9.1"}
+        ], "sex":"女", "productTitle":"包邮正品日本代购女装千趣会纯棉奢华人气风水师李家幽竹和服套装", "productPicUrl":"http://img03.taobaocdn.com/bao/uploaded/i3/T1RM6CXmpkXXan2eI6_061421.jpg_210x210.jpg"}
+    ]}
+
+    $.tmpl($('#tmpl').val(), data).appendTo('body');
+</script>

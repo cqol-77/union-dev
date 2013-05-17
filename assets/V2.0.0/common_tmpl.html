@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="../../css/p4p-2.0.css">
+<textarea name="" id="tmpl" cols="30" rows="10" style="display: none;">
+    <div class="pin_sidertab" style="display: block;">
+        <div style="overflow:hidden;">
+            <ul class="sider_ul">
+                <li class="J_com_tabli"><span class="t_bg"></span><a target="_blank" title="热卖宝贝" class="alink" href="#"
+                                                                     hidefocus="true">热卖宝贝</a><span class="b_bg"></span>
+
+                    <div class="pin_tts_similar_box" style="display: block;">
+                        <div class="pin_tip-wrap isData">
+                            <div class="tip_up "></div>
+                            <a class="close" href="javascript:;" title="关闭"></a>
+
+                            <h3 class="h3">热卖宝贝</h3>
+                            <ul class="pd">{{each itemList}}
+                                <li>
+                                    <div class="img"><a href="${itemUrl}" title="${adTitle}" target="_blank"><img
+                                            src="${adImgUrl}" height="120"/></a></div>
+                                    <div class="link"><a href="#" target="_blank" title="${adTitle}">${adTitle}</a>
+                                    </div>
+                                    <div class="price"><span>${itemPrice}</span></div>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</textarea>
+<div class="pin_sidertab" style="display: block;">
+    <div style="overflow:hidden;">
+        <ul class="sider_ul">
+            <li class="J_com_tabli"><span class="t_bg"></span><a target="_blank" title="热卖宝贝" class="alink" href="#"
+                                                                 hidefocus="true">热卖宝贝</a><span class="b_bg"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="pin_tts_similar_box" style="display: block;">
+    <div class="pin_tip-wrap isData">
+        <div class="tip_up "></div>
+        <a class="close" href="javascript:;" title="关闭"></a>
+
+        <h3 class="h3">热卖宝贝</h3>
+        <ul class="pd">{{each itemList}}
+            <li>
+                <div class="img"><a href="${itemUrl}" title="${adTitle}" target="_blank"><img
+                        src="${adImgUrl}" height="120"/></a></div>
+                <div class="link"><a href="#" target="_blank" title="${adTitle}">${adTitle}</a>
+                </div>
+                <div class="price"><span>${itemPrice}</span></div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/lib/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.tmpl.min.js"></script>
+<script type="text/javascript">
+    var data = {"itemList":[
+        {"adImgUrl":"http://img03.taobaocdn.com/bao/uploaded/i3/13268022360379835/T1kcUJXhRdXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"TOPOT 2013春装衬衫 男士时尚休闲磨", "itemPrice":"179.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…zVCLDHCMq9Dhj1zszRy1nJB3jLpteWmczPDgvTuhjPy2u9mtC5lJaWjNzVBhvTzt00ntKZnG==", "primePrice":"179.00"},
+        {"adImgUrl":"http://img02.taobaocdn.com/bao/uploaded/i2/14216018948838363/T1jZ7CXihgXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"r.beauty2013春装复古女装波点雪纺", "itemPrice":"98.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…ngB3jxyxjKpxrYDwuMA2nty29Yzt0XmdaMAxrLBvbYAwnLptK4lJaWjNzVBhvTzt00mdq5mW==", "primePrice":"98.00"},
+        {"adImgUrl":"http://img01.taobaocdn.com/bao/uploaded/i1/14487032441036340/T1bntmXC4bXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"MJX2013春装女装格子衬衫女长袖英伦", "itemPrice":"98.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…zPC0zVCLDHCMq9Dhj1zszRy1nJB3jLpteWmczPDgvTuhjPy2u9otGUmdaMDM9SDw1Lpti4mJGY", "primePrice":"98.00"},
+        {"adImgUrl":"http://img04.taobaocdn.com/bao/uploaded/i4/10450020432525960/T15c8JXzReXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"2013春装新款男士衬衫长袖修身加厚", "itemPrice":"239.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…zVCLDHCMq9Dhj1zszRy1nJB3jLpteWmczPDgvTuhjPy2u9mJm5lJaWjNzVBhvTzt0Xntm1oa==", "primePrice":"239.00"}
+    ]}
+    var data1 = {"itemList":[
+        {"adImgUrl":"http://img03.taobaocdn.com/bao/uploaded/i3/13268020617414545/T1xfUHXolgXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"TOPOT 2013春装衬衫 男士时尚休闲磨毛格子韩版修身 男装长袖衬衣", "itemPrice":"179.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…ngB3jxyxjKpxrYDwuMA2nty29Yzt0XmdaMAxrLBvbYAwnLpte3os4Wmcz2B2X1Bwu9ndG2mdC=", "primePrice":"179.00"},
+        {"adImgUrl":"http://img02.taobaocdn.com/bao/uploaded/i2/14216018948838363/T1jZ7CXihgXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"r.beauty2013春装复古女装波点雪纺衫衬衣打底长袖翻领衬衫14006", "itemPrice":"98.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…ngB3jxyxjKpxrYDwuMA2nty29Yzt0XmdaMAxrLBvbYAwnLptK4lJaWjNzVBhvTzt00mdG2na==", "primePrice":"98.00"},
+        {"adImgUrl":"http://img01.taobaocdn.com/bao/uploaded/i1/14487020587017574/T1CiRMXvpeXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"MJX2013春装女装格子衬衫女长袖英伦韩版修身长袖衬衫春款衬衣女", "itemPrice":"98.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…zPC0zVCLDHCMq9Dhj1zszRy1nJB3jLpteWmczPDgvTuhjPy2u9otGUmdaMDM9SDw1Lpti5mJmW", "primePrice":"98.00"},
+        {"adImgUrl":"http://img04.taobaocdn.com/bao/uploaded/i4/10450020432525960/T15c8JXzReXXXXXXXX_!!0-item_pic.jpg_210x210.jpg", "adTitle":"2013春装新款男士衬衫长袖修身加厚磨毛休闲时尚格子潮男装衬衣", "itemPrice":"239.00", "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…zVCLDHCMq9Dhj1zszRy1nJB3jLpteWmczPDgvTuhjPy2u9mJm5lJaWjNzVBhvTzt0XntK1nq==", "primePrice":"239.00"}
+    ]}
+    $.tmpl($('#tmpl').val(), data).appendTo('body');
+    $.append('<div class="pin_sidertab" style="display: block;"> <div style="overflow:hidden;"> <ul class="sider_ul"> <li class="J_com_tabli"><span class="t_bg"></span><a target="_blank" title="热卖宝贝" class="alink" href="#" hidefocus="true">热卖宝贝</a><span class="b_bg"></span></li></ul></div></div>');
+</script>

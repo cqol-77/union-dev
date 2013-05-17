@@ -1,0 +1,348 @@
+.tts_media div, .tts_media div ul, .tts_media li, .tts_media h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.tts_media li {
+    list-style: none;
+}
+
+.tts_media a, .tts_media a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.tts_media img {
+    border: 0 none;
+}
+
+.tts_sidertab, .tts-marker, .tts_tip_wrap, .tts_marker_box,
+.brand_tip_wrap,.brand_sidertab {
+    position: absolute;
+    z-index: 49059558;
+    overflow: visible;
+}
+
+.tts_sidertab {
+    width: 25px;
+}
+
+.tts_sidertab li {
+    float: left;
+    width: 25px;
+    margin-bottom: 1px;
+}
+
+.tts_sidertab .t_bg, .tts_sidertab .b_bg, .tts_sidertab .alink, .tts_sidertab .active .alink
+.tts_sidertab .alink:hover, .tts_sidertab .active .t_bg, .tts_sidertab .active .b_bg {
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/btn_bg_0313.png) no-repeat;
+}
+
+.tts_sidertab .alink:hover, .tts_sidertab .active .alink {
+    text-decoration: none;
+    background-position: -50px 0;
+    background-repeat: repeat-y;
+}
+
+.tts_sidertab span {
+    display: block;
+}
+
+.tts_sidertab .t_bg {
+    background-position: 0 0px;
+    height: 2px;
+    width: 25px;
+    font-size: 0;
+}
+
+.tts_sidertab .b_bg {
+    background-position: 0 -2px;
+    height: 2px;
+    width: 25px;
+    font-size: 0;
+}
+
+.tts_sidertab .alink {
+    margin-top: -1px;
+    display: block;
+    text-decoration: none;
+    padding: 6px 4px 4px 4px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 14px;
+    background-position: -25px 0;
+    background-repeat: repeat-y;
+    color: #fff;
+}
+
+.tts_marker {
+    height: 40px;
+    width: 34px;
+}
+
+.tts_marker a {
+    display: block;
+    opacity: 0.8;
+    filter: alpha(opacity = 80);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/pin_sim_pointer.png) no-repeat;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/pin_sim_pointer.png", sizingMethod = "scale");
+}
+
+.tts_marker a:hover, .tts_marker_box .active a {
+    display: block;
+    opacity: 1;
+    filter: alpha(opacity = 100);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/pin_sim_pointer_hover.png) no-repeat;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/pin_sim_pointer_hover.png", sizingMethod = "scale");
+}
+
+.tts_tip_wrap {
+    display: none;
+    width: 273px;
+    height: 299px;
+    overflow: hidden;
+    top: 0;
+}
+
+.tts_tip_wrap .tip_up {
+    width: 274px;
+    height: 299px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/bg-tip-0313.png) no-repeat;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/bg-tip-0313.png", sizingMethod = "scale");
+}
+
+.tts_tip_wrap .close {
+    display: block;
+    position: absolute;
+    height: 13px;
+    width: 13px;
+    line-height: 0;
+    top: 6px;
+    left: 250px;
+    z-index: 3;
+    cursor: pointer;
+    background: url("about:_blank");
+}
+
+.tts_tip_wrap h3 {
+    height: 26px;
+    line-height: 26px;
+    text-align: left;
+    padding: 0 0 0 36px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tts_tip_wrap .tts_load_wrap {
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/ajax_load.gif) center center no-repeat;
+    height: 280px;
+    width: 272px;
+}
+
+.tts_tip_wrap .pd {
+    position: relative;
+    margin-left: 2px;
+    float: left;
+    overflow: hidden;
+    zoom: 1;
+    background-color: #fff;
+    padding: 10px 0 0 10px;
+}
+
+.tts_tip_wrap .pd li {
+    background-color: #fff;
+    float: left;
+    height: 120px;
+    width: 120px;
+    _display: inline;
+    margin: 0 10px 10px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.tts_tip_wrap .img {
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/ajax_load.gif) center center no-repeat;
+}
+
+.tts_tip_wrap .img a {
+    display: table-cell;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    vertical-align: middle;
+    *display: block;
+    *font-family: Arial;
+    *font-size: 105px
+}
+
+.tts_tip_wrap .img a img {
+    vertical-align: middle;
+    max-height: 120px;
+    max-width: 120px;
+}
+
+.tts_tip_wrap .price {
+    font-size: 12px;
+    font-family: Tahoma;
+    font-weight: bold;
+    color: #fff;
+    height: 16px;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/price_bg_0313.png) no-repeat;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/price_bg_0313.png", sizingMethod = "scale");
+    line-height: 16px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.tts_tip_wrap .price span {
+    padding: 0 3px 0 15px;
+}
+
+/*brand style*/
+.tts_media .brand_box {
+    overflow: visible;
+    position: absolute;
+    z-index: 405548810;
+}
+
+.tts_media .brand_box .pin_brand {
+    padding: 3px;
+    overflow: hidden;
+}
+
+.tts_media .brand_box .pin_brand_bg {
+    width: 306px;
+    height: 66px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+    background-color: #000;
+    opacity: 0.2;
+    filter: Alpha(Opacity = 20);
+}
+
+.tts_media .brand_box .pin_brand_img {
+    height: 60px;
+    width: 300px;
+}
+
+.tts_media .brand_box .pin_brand_con {
+    position: relative;
+    height: 60px;
+    width: 300px;
+}
+
+.tts_media .brand_box .pin_brand_con a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.tts_media .brand_box .pin_brand_con a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.tts_media .brand_box .pin_brand_close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 13px;
+    height: 12px;
+    z-index: 33;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/brand_close.png) no-repeat;
+    cursor: pointer;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/brand_close.png", sizingMethod = "scale");
+}
+
+.tts_media .brand_box .pin_media {
+    height: 15px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/media_bg.png) no-repeat;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/media_bg.png", sizingMethod = "scale");
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 12px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    display: none;
+}
+
+.tts_media .brand_box .pin_media_t {
+    height: 15px;
+    position: absolute;
+    width: 19px;
+    right: 0;
+    bottom: 0;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/media_bg_t.png) no-repeat;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src = "http://ttsmedia.b0.upaiyun.com/union/img/media_bg_t.png", sizingMethod = "scale");
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+}
+
+/*brand_sidertab 0506*/
+.brand_alink {
+    display: block;
+    position: relative;
+    height: 195px;
+    width: 25px;
+}
+.brand_alink a {
+    display: block;
+    height: 195px;
+    width: 25px;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-image: url(about:blank);
+}
+
+.brand_tip_wrap {
+    display: none;
+    overflow: hidden;
+    width: 300px;
+    height: 220px;
+    top: 0;
+}
+.brand_tip_wrap a{
+    display: block;
+    height: 220px;
+    width: 330px;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-image: url(about:blank);
+}
+.brand_close {
+    float: left;
+    background-color: #ffcaca;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url(http://ttsmedia.b0.upaiyun.com/union/img/close_01.png) no-repeat;
+}

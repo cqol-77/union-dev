@@ -1,0 +1,10 @@
+{
+    "bitwise": true,
+    "eqeqeq": true,
+    "newcap": true,
+    "latedef": true,
+    "noempty": true,
+    "unused": true,
+    "browser": true,
+    "smarttabs": true
+}

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../../css/p4p-2.0.css">
+<textarea name="" id="tmpl" cols="30" rows="10" style="display: none;">
+    <div class="pin_brand">
+        <div class="pin_brand_bg"></div>
+        <div class="pin_brand_con">
+            <div class="pin_brand_img"><a href="${itemUrl}" target="_blank" title="${adTitle}"><img src="${adImgUrl}"
+                                                                                                    height="60"
+                                                                                                    width="300"
+                                                                                                    alt=""></a></div>
+            <a class="pin_brand_close" href="javascript:;" title="关闭"></a>
+            <a href="#" target="_blank" class="pin_media">图媒体</a>
+            <a href="#" target="_blank" class="pin_media_t"></a>
+        </div>
+    </div>
+</textarea>
+<script type="text/javascript" src="../../js/lib/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../../js/lib/jquery.tmpl.min.js"></script>
+<script type="text/javascript">
+    var data = {
+        "adTitle":"春季男装大促",
+        "adImgUrl":"http://qc.taotaosou.com/p4p/20110/1363054892845/1363054892845.jpg",
+        "itemUrl":"http://click.kc.taotaosou.com/rc.do?url=Ahr0CcuZqsuYrIuYrNmUy2XPy2SUDgfVyMf…PWzYzPC0zVCLDHCMq9zMfSC2uMA2nty29Yzt0XmdaMAxrLBvbYAwnLptK5jNzVBhvTzt0Zma=="
+    };
+    $.tmpl($('#tmpl').val(), data).appendTo('body');
+</script>
