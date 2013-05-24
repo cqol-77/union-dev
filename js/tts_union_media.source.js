@@ -1,8 +1,8 @@
-﻿(function (window) {
-    if (typeof window.TTSMedia !== "undefined") {
+﻿(function (TTSUI) {
+    if (typeof TTSMedia !== "undefined") {
         return false;
     }
-    window.TTSMedia = true;
+    TTSMedia = true;
     var document = window.document,
         navigator = window.navigator,
         global = "__TTS",
@@ -1750,4 +1750,4 @@
     };
 
     init_media();
-})(window);
+})(window.TTSUI);
