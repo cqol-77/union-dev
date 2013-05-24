@@ -1,4 +1,5 @@
 ﻿(function (TTSUI) {
+    //bengin this
     if (typeof TTSMedia !== "undefined") {
         return false;
     }
@@ -127,7 +128,6 @@
      * @param img
      * @return {Boolean}
      */
-        //TODO: 本方法只在 getCurrentPageImages() 使用，是否可以放进 getCurrentPageImages() 里面
     function isValidImage(img) {
         //["JPG", "PNG","JPEG"]
         var imgType = ["JPG", "PNG", "JPEG"];
