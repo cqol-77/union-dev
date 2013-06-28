@@ -10,7 +10,8 @@ module.exports = function (grunt) {
             file:{
                 js:'build/tts_union_media.js',
                 css:'build/p4p-2.0.css',
-                img:'build/'
+                img:'build/',
+                center:'build/tts_union_center.js'
             },
             debug:'build/debug/tts_union_media.js'
         },
@@ -19,6 +20,11 @@ module.exports = function (grunt) {
                 js:'js/tts_union_media.source.js',
                 img:'img/',
                 css:'css/p4p-2.0.css'
+            }
+        },
+        center:{
+            file:{
+                js:'js/tts_union_center.js'
             }
         },
         concat:{
@@ -31,6 +37,10 @@ module.exports = function (grunt) {
                 dest:'<%= lib.ttsui %>'
             },
             union:{
+                options:{
+                    banner:'/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                        '<%= grunt.template.today("yyyy-mm-dd") %> */'
+                },
                 src:['<%= lib.ttsui %>', '<%= union.file.js %>'],
                 dest:'<%= build.debug %>'
             }
@@ -51,6 +61,14 @@ module.exports = function (grunt) {
                 files:{
                     '<%= build.file.js %>':'<%= build.debug %>'
                 }
+            },
+            center:{
+                options:{
+                    banner:'/*! <%= pkg.name %> - by cqol_77 <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                },
+                files:{
+                    '<%= build.file.center %>':'<%= center.file.js %>'
+                }
             }
         },
         jshint:{
@@ -60,6 +78,14 @@ module.exports = function (grunt) {
                 },
                 files:{
                     src:['<%= union.file.js %>']
+                }
+            },
+            center:{
+                options:{
+                    jshintrc:'.jshintrc'
+                },
+                files:{
+                    src:['<%= center.file.js %>']
                 }
             }
         },
@@ -73,6 +99,11 @@ module.exports = function (grunt) {
                 files:[
                     {src:['<%= build.debug %>'], dest:'<%= build.debug %>'}
                 ]
+            },
+            center:{
+                files:[
+                    {src:['<%= center.file.js %>'], dest:'<%= center.file.js %>'}
+                ]
             }
         },
         copy:{
@@ -82,14 +113,14 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        cssmin: {
-            options: {
+        cssmin:{
+            options:{
                 banner:'/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
                     '<%= grunt.template.today("yyyy-mm-dd") %> */'
             },
-            combine: {
-                files: {
-                    '<%= build.file.css %>': ['<%= union.file.css %>']
+            combine:{
+                files:{
+                    '<%= build.file.css %>':['<%= union.file.css %>']
                 }
             }
         }
@@ -116,6 +147,11 @@ module.exports = function (grunt) {
         //grunt.task.run('jshint:union');
         grunt.task.run('concat:lib');
         grunt.task.run('uglify:lib');
+    });
+    grunt.registerTask('center', 'tts union', function () {
+        //grunt.task.run('jshint:union');
+        grunt.task.run('jshint:center');
+        grunt.task.run('uglify:center');
     });
     // Default task(s).
     grunt.registerTask('default', ['uglify']);

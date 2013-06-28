@@ -1,11 +1,10 @@
-﻿(function (TTSUI) {
-    //bengin this
-    if (typeof TTSMedia !== "undefined") {
+﻿(function (window, TTSUI) {
+    if (typeof window.TTSMedia !== "undefined") {
         return false;
     }
-    TTSMedia = true;
+    window.TTSMedia = true;
     var document = window.document,
-        navigator = window.navigator,
+    //navigator = window.navigator,
         global = "__TTS",
         ttsunionId,
         MEDIA_config;
@@ -14,8 +13,7 @@
         flag = true,
         firstLoad = true,
         hashChange = true;
-    var _imgUrl = '',
-        mediaSize = "_120x120.jpg";
+    var mediaSize = "_120x120.jpg";
     var mediaBox;
     var hasSim = false,
         hasBrand = false,
@@ -55,10 +53,10 @@
      * 判断浏览器是否是ie
      * @return {Boolean}
      */
-    function isIE() {
-        //return /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent);
-        return new RegExp("msie", "i").test(navigator.userAgent) && !new RegExp("opera", "i").test(navigator.userAgent);
-    }
+    /*function isIE() {
+     //return /msie/i.test(navigator.userAgent) && !/opera/i.test(navigator.userAgent);
+     return new RegExp("msie", "i").test(navigator.userAgent) && !new RegExp("opera", "i").test(navigator.userAgent);
+     }*/
 
     /**
      * 对象在浏览器里的相对位置
@@ -92,7 +90,10 @@
             url = "http://thumb1.yokacdn.com/p_420_625/" + url.substring(url.indexOf("&f=") + 3).replace(":", "") + ".jpg";
         } else if (url.match(/.cache./)) {
             url = 'http://img1' + url.substring(url.indexOf(".cache."));
-        } else if (url.match(/\?/)) {
+        } else if (url.match(/.gtimg.cn/)) {
+            url = 'http://soso1' + url.substring(url.indexOf(".gtimg.cn"));
+        }
+        if (url.match(/\?/)) {
             url = url.split('?')[0];
         }
         return url;
@@ -128,24 +129,32 @@
      * @param img
      * @return {Boolean}
      */
+        //TODO: 本方法只在 getCurrentPageImages() 使用，是否可以放进 getCurrentPageImages() 里面
     function isValidImage(img) {
         //["JPG", "PNG","JPEG"]
-        var imgType = ["JPG", "PNG", "JPEG"];
+        var imgType = MEDIA_config.imgType;
         //下面的条件也会匹配到这样的图片 <img src="data:">
         //建议改成 img.src.match(/data:/)
         if (img.src && img.src.match(/data:/)) {
             return false;
         }
         if (skipImg(img)) {
+            var fixSrc = img.src.split('?')[0].slice(-5).toUpperCase(),
+                matchUnknown = false;
+            if (fixSrc.match(/\./)) {
+                matchUnknown = true;
+            }
             for (var i = 0; i < imgType.length; i++) {
-                var srcType = imgType[i];
-                var fixSrc = img.src.split('?')[0].slice(-4).toUpperCase();
-                if (fixSrc.match(srcType)) {
+                var srcType = imgType[i].toUpperCase();
+                if (fixSrc.match(srcType) || (!matchUnknown && srcType === 'UNKNOWN')) {
                     var newImg = new Image();
                     newImg.src = img.src;
                     if (newImg.width >= MEDIA_config.minWidth && newImg.height >= MEDIA_config.minHeight) {
                         return true;
                     }
+                    /*if (img.width >= MEDIA_config.confSpider.macthHeight && img.height >= MEDIA_config.confSpider.macthWidth) {
+                     return true
+                     }*/
                 }
             }
         }
@@ -180,15 +189,20 @@
      * @return {Boolean}
      */
     function isValidSpiderImage(img) {
+        //imgType = ["JPG", "PNG","JPEG", "UNKNOWN"] 类型
         var imgType = MEDIA_config.confSpider.imgType;
         if (img.src && img.src.indexOf("data:") === 0) {
             return false;
         }
         if (skipImg(img)) {
+            var fixSrc = img.src.split('?')[0].slice(-5).toUpperCase(),
+                matchUnknown = false;
+            if (fixSrc.match(/\./)) {
+                matchUnknown = true;
+            }
             for (var i = 0; i < imgType.length; i++) {
                 var srcType = imgType[i].toUpperCase();
-                var fixSrc = img.src.split('?')[0].slice(-4).toUpperCase();
-                if (fixSrc.match(srcType)) {
+                if (fixSrc.match(srcType) || (!matchUnknown && srcType === 'UNKNOWN')) {
                     var newImg = new Image();
                     newImg.src = img.src;
                     if (newImg.width >= MEDIA_config.minWidth && newImg.height >= MEDIA_config.minHeight) {
@@ -348,7 +362,7 @@
          "minWidth":300,
          "minHeight":300,
          "maxSize":2,
-         "priority":['2', '3'],
+         "priority":['1', '3'],
          "confSim":{"adStyle":1, "tabSize":3, "popDirect":1, "popTime":3, "markerStyle":1, "markerShow":1, "hover":1},
          //"confBrand":{"adStyle":2, "popTime":3, "popNum":1, "hover":2},
          "confBrand":{"adStyle":2, "popTime":3, "popNum":0, "hover":1, "popDirect":1, "closed":1},
@@ -375,7 +389,7 @@
             } else {
                 MEDIA_config = data;
                 init();
-                statistics('0', 'PAG', '0', 'PV', 'ALL');
+                //statistics('0', 'PAG', '0', 'PV', 'ALL');
             }
         });
     }
@@ -388,6 +402,7 @@
         if (!MEDIA_config) {
             return false;
         }
+
         var oldNum;
         //页面图片 改变
         var domChangeFn = function () {
@@ -410,11 +425,8 @@
         function getCurrentImg() {
             var currentPageEImages = getCurrentPageImages();
             var uniqPageEImages = uniqImgObj(currentPageEImages);
-            for (var j = 0, ulen = uniqPageEImages.length; j < ulen; j++) {
-                _imgUrl += ',' + encodeURIComponent(uniqPageEImages[j].src);
-            }
-            //load('http://mlog.ttsunion.com/statistics.do?type=ZZpv_&fr_url=&banner_url=&bak=' + '&img_url=' + _imgUrl.substring(1));
-            load('http://log.taotaosou.com/statistics.do?type=ZZpv_&fr_url=&banner_url=&bak=' + '&img_url=' + _imgUrl.substring(1));
+
+            //spider采集发送
             if (MEDIA_config.confSpider) {
                 var spiderImgs = matchSpiderImage();
                 if (spiderImgs.length > 0) {
@@ -423,7 +435,7 @@
                     }
                     var str = '';
                     for (var i = 0; i < spiderImgs.length; i++) {
-                        str += ',' + encodeURIComponent(spiderImgs[i].src);
+                        str += ',' + encodeURIComponent(changeUrl(spiderImgs[i].src));
                     }
                     //spider 采集
                     load(api.test + 'cltProxy.do?urls=' + str.substring(1) +
@@ -432,22 +444,30 @@
             }
             oldNum = currentPageEImages;
             if (uniqPageEImages.length > 0) {
+                //页面总pv!
+                statistics('0', 'PAG', '0', 'PV', 'ALL');
                 if (uniqPageEImages.length > MEDIA_config.maxSize) {
-                    var unPinImg = uniqPageEImages.slice(MEDIA_config.maxSize);
-                    for (var k = 0, len = unPinImg.length; k < len; k++) {
-                        statistics(unPinImg[k].src, 'IMG', '0', 'PV', 'ALL');
-                        statistics(unPinImg[k].src, 'IMG', '0', 'PV', 'ADN');
-                    }
+                    //剔除不匹配图片的埋点发送
+                    //var unPinImg = uniqPageEImages.slice(MEDIA_config.maxSize);
+                    /*for (var k = 0, len = unPinImg.length; k < len; k++) {
+                     statistics(unPinImg[k].src, 'IMG', '0', 'PV', 'ALL');
+                     statistics(unPinImg[k].src, 'IMG', '0', 'PV', 'ADN');
+                     }*/
                     uniqPageEImages.length = MEDIA_config.maxSize;
                 }
+                var _imgUrl = '';
+                for (var j = 0, ulen = uniqPageEImages.length; j < ulen; j++) {
+                    _imgUrl += ',' + encodeURIComponent(changeUrl(uniqPageEImages[j].src));
+                }
+                load('http://log.taotaosou.com/statistics.do?type=ZZpv_&fr_url=&banner_url=&bak=' + '&img_url=' + _imgUrl.substring(1));
                 delMedia(uniqPageEImages);
                 regMedia(uniqPageEImages);
             } else {
-                statistics('0', 'PAG', '0', 'PV', 'ADN');
                 delMedia();
             }
         }
 
+        var imgDelay = null;
         setTimeout(function () {
             getCurrentImg();
             domChangeFn();
@@ -455,13 +475,30 @@
             TTSUI("img").not(".tts_media img").load(function () {
                 if (hashChange && firstLoad) {
                     firstLoad = false;
-                    setTimeout(function () {
+                    if (imgDelay) {
+                        clearTimeout(imgDelay);
+                    }
+                    imgDelay = setTimeout(function () {
+                        firstLoad = true;
                         getCurrentImg();
-                    }, 500);
+                    }, 800);
                 }
             });
-        }, 800);
+        }, 500);
     }
+
+    /*function isHashChanged() {
+     var hash = document.location.hash,
+     hashTimer = null;
+     if(hashTimer) {
+     clearInterval(hashTimer)
+     }
+     hashTimer = setTimeout(function () {
+     if (document.location.hash !== hash) {
+     return true;
+     }
+     }, 500);
+     }*/
 
     /**
      * 初始化图媒体
@@ -474,23 +511,9 @@
             //TODO: 给 IE6/7 模拟 haschange 事件，封装到 $(window).bind('hashchange')
             //改变hash值 重新去图片
             //参考 KISSY: http://docs.kissyui.com/docs/html/api/core/event/hashchange.html
-            if (isIE()) {
-                var hash = document.location.hash;
-                TTSUI("body").bind('click', function () {
-                    hashTimer = setTimeout(function () {
-                        if (document.location.hash !== hash) {
-                            delMedia();
-                            clearTimeout(hashTimer);
-                            hashChange = false;
-                            hash = document.location.hash;
-                            hasSim = false;
-                            hasBrand = false;
-                            hasCommon = false;
-                            getConfig();
-                        }
-                    }, 500);
-                });
-            } else {
+            if (('onhashchange' in window) && ((typeof document.documentMode === 'undefined') ||
+                document.documentMode === 8)) {
+                // 浏览器支持onhashchange事件
                 TTSUI(window).bind('hashchange', function () {
                     hashChange = false;
                     delMedia();
@@ -499,11 +522,49 @@
                         hasSim = false;
                         hasBrand = false;
                         hasCommon = false;
-                        getConfig();
+                        //getConfig();
+                        //翻页不请求配置信息
+                        init();
                     }, 500);
                 });
             }
+            else {
+                var hash = document.location.hash;
+                setInterval(function () {
+                    if (document.location.hash !== hash) {
+                        hash = document.location.hash;
+                        hashChange = false;
+                        delMedia();
+                        hasSim = false;
+                        hasBrand = false;
+                        hasCommon = false;
+                        //getConfig();
+                        //翻页不请求配置信息
+                        init();
+                    }
+                }, 500);
+            }
+            clearMedia();
         });
+    }
+
+    /**
+     * 针对画报翻到最后一页时
+     * 弹出广告去除标签
+     */
+    function clearMedia() {
+        if (url.match(/163.com\/photoview/)) {
+            TTSUI('body').bind('click', function () {
+                setTimeout(function () {
+                    if (TTSUI('.endpage')[0] && TTSUI('.endpage')[0].style.display === 'block') {
+                        delMedia();
+                    }
+                    else if (document.getElementById('photoLayout') && document.getElementById('photoLayout').style.display === 'block') {
+                        delMedia();
+                    }
+                }, 500);
+            });
+        }
     }
 
     /**
@@ -547,6 +608,14 @@
         var tagList = data.tagList;
         TTSUI(tagList).each(function (i, item) {
             var status = item.lhandleStatus;
+            //针对百度图片采集转码的问题处理
+            if (item.imageUrl.match(/hiphotos.baidu.com/)) {
+                //item.imageUrl.replace(/w\\u003d/, 'w%3D').replace(/sign\\u003d/, 'sign=')
+                var arr = item.imageUrl.split(/\//),
+                    conArr = eImage.src.split(/\//);
+                item.imageUrl = arr[arr.length - 1];
+                eImage.src = conArr[conArr.length - 1];
+            }
             if (item.imageUrl === eImage.src) {
                 switch (status) {
                     case 4: //啥都不出
@@ -624,10 +693,13 @@
         this.elm = this.imgObj.img;
         //this.elmOffset = TTSUI(this.elm).offset();
         this.elmOffset = getOffset(this.elm);
-        if (!hasMedia) {
-            statistics('0', 'PAG', '0', 'PV', 'ADY');
-            hasMedia = true;
-        }
+        //展示pv
+        statistics('0', 'PAG', '0', 'PV', 'ADY');
+        /*if (!hasMedia) {
+         //展示pv
+         statistics('0', 'PAG', '0', 'PV', 'ADY');
+         hasMedia = true;
+         }*/
     }
 
     /**
@@ -1718,21 +1790,21 @@
                     statistics(_this.imgObj.src, 'IMGBART300220', 'AD', 'CK', '0');
                 }
             });
-            if (_this.config.hover === 1) {
-                if (_this.config.popTime > 0 && !hasBrand) {
-                    //var popTime = _this.config.popTime;
-                    if (!_this.brandTab.attr("data-show")) {
-                        //第一张默认展示埋点
-                        //console.log('//第一张默认展示埋点');
-                        statistics(_this.elm.src, 'IMGBART300220', 'AD', 'PV', '0');
-                    }
-                    showBrand();
-                    _this.brandTab.attr("data-show", "isData");
-                    setTimeout(function () {
-                        TTSUI('.J_tip_wrap').eq(0).hide();
-                    }, _this.config.popTime * 1000);
-                    hasBrand = true;
+            if (_this.config.popTime > 0 && !hasBrand) {
+                //var popTime = _this.config.popTime;
+                if (!_this.brandTab.attr("data-show")) {
+                    //第一张默认展示埋点
+                    //console.log('//第一张默认展示埋点');
+                    statistics(_this.elm.src, 'IMGBART300220', 'AD', 'PV', '0');
                 }
+                showBrand();
+                _this.brandTab.attr("data-show", "isData");
+                setTimeout(function () {
+                    TTSUI('.J_tip_wrap').eq(0).hide();
+                }, _this.config.popTime * 1000);
+                hasBrand = true;
+            }
+            if (_this.config.hover === 1) {
                 //图片触发广告
                 TTSUI(_this.elm).hover(function () {
                     if (!_this.brandTab.attr("data-show")) {
@@ -1750,4 +1822,4 @@
     };
 
     init_media();
-})(window.TTSUI);
+})(window, TTSUI);
